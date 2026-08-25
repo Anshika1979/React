@@ -22,7 +22,13 @@ function App() {
       setAlert(null);
     }, 2000);
   }
-  
+  const removeBodyClasses=()=>{
+    document.body.classList.remove('bg-light');
+    document.body.classList.remove('bg-dark');
+    document.body.classList.remove('bg-warning');
+    document.body.classList.remove('bg-danger');
+    document.body.classList.remove('bg-success');
+  }
   const toggleMode = ()=>{
     if(mode === 'light'){
       setMode('dark');
@@ -36,6 +42,11 @@ function App() {
         showAlert("Light mode has been enabled", "success");
       }
     }
+
+    const setThemeColor = (cls) => {
+      removeBodyClasses();
+      document.body.classList.add('bg-' + cls);
+    }
     return (
       <>
      <Router>
@@ -43,6 +54,7 @@ function App() {
     title="My Navbar"
     mode={mode}
     toggleMode={toggleMode}
+    setThemeColor={setThemeColor}
   />
 
   <Alert alert={alert} />
